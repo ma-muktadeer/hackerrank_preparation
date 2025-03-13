@@ -21,7 +21,7 @@ public class Result {
             System.out.println(s);
         }
 
-        // Stream.of(res).forEach(f -> System.out.print(f + " "));
+        Stream.of(res).forEach(f -> System.out.print(f + " "));
        System.out.print(s);
     }
 
