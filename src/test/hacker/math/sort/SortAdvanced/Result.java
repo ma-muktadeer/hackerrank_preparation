@@ -19,9 +19,8 @@ public class Result {
 
     private static long sorting(List<Long> arr, Long value, int pos) {
         long res = 0;
-
         for (int i = 0; i < arr.size(); i++) {
-            // System.out.println("value= " +value);
+            System.out.println("value= " +value);
             if (arr.get(i) > value && i < pos) {
                 Long v = arr.get(i);
                 arr.set(i, value);
