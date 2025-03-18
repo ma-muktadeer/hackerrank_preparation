@@ -35,7 +35,7 @@ public class Result {
             } else {
                 arr[k] = R[j];
                 j++;
-                swapCount += (mid + 1) - (left + i); // Count inversions
+                swapCount += (mid + 1) - (left + i);
             }
             k++;
         }
