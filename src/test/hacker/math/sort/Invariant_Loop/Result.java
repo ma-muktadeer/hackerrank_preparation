@@ -3,7 +3,8 @@ package test.hacker.math.sort.Invariant_Loop;
 import java.util.List;
 
 public class Result {
-    private static int swapCount = 0;
+    static long swapCount = 0; // Use long to avoid integer overflow
+
     public static void mergeSort(int[] arr, int left, int right) {
         if (left < right) {
             int mid = left + (right - left) / 2;
@@ -21,10 +22,8 @@ public class Result {
         int[] L = new int[n1];
         int[] R = new int[n2];
 
-        for (int i = 0; i < n1; i++)
-            L[i] = arr[left + i];
-        for (int j = 0; j < n2; j++)
-            R[j] = arr[mid + 1 + j];
+        for (int i = 0; i < n1; i++) L[i] = arr[left + i];
+        for (int j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
 
         int i = 0, j = 0, k = left;
 
@@ -35,7 +34,7 @@ public class Result {
             } else {
                 arr[k] = R[j];
                 j++;
-                swapCount += (mid + 1) - (left + i);
+                swapCount += (mid - left + 1) - i; // Correct swap count formula
             }
             k++;
         }
@@ -53,8 +52,10 @@ public class Result {
         }
     }
 
+
     public static void insertionSort1(int n, List<Integer> arr) {
         int[] array = arr.stream().mapToInt(i -> i).toArray();
+        swapCount = 0;
         mergeSort(array, 0, n - 1);
         System.out.println(swapCount);
     }
