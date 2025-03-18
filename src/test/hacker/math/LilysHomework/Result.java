@@ -1,51 +1,25 @@
 package test.hacker.math.LilysHomework;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Result {
-
     public static long lilysHomework(List<Integer> arr) {
-        Integer[] ar = arr.stream().toArray(Integer[]::new);
+        
         long count = 0;
-        for (int i = 0; i < ar.length - 1; i++) {
-            boolean isSwap = swapValue(ar, i);
-            if (isSwap) {
+        for (int i = 0; i < arr.size() - 2; i++) {
+            boolean swp = isSwapValue(arr.subList(0, i + 2), arr.subList(i + 2, arr.size()));
+            if (swp) {
                 count += 1;
             }
         }
 
-        // System.out.println(Stream.of(ar).toList());
-
         return count;
     }
 
-    private static boolean swapValue(Integer[] ar, int i) {
-        Integer checkValue = ar[i];
-        boolean isSwap = false;
-        for (int j = i + 1; j < ar.length; j++) { // 7, 15, 12, 3
-            if (checkValue > ar[j]) {
-                if (i + 1 == j) {
-                    Integer v = checkValue;
-                    ar[i] = ar[j];
-                    ar[j] = v;
-                    checkValue = ar[i];
-                } else {
-                    for (int k = i + 1; k < j; k++) {
-                        Integer v = checkValue;
-                        ar[k] = ar[j];
-                        ar[j] = v;
-                        checkValue = ar[k];
-                    }
-                }
-                isSwap = true;
-            } else {
-                continue;
-            }
-        }
-        System.out.println(Stream.of(ar).toList());
+    private static boolean isSwapValue(List<Integer> subList, List<Integer> subList2) {
+        int m1 = subList.stream().max(Integer::compareTo).get();
+        int m2 = subList2.stream().min(Integer::compareTo).get();
 
-        return isSwap;
+        return m1 > m2;
     }
-
 }
