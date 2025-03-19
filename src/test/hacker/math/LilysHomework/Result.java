@@ -16,7 +16,6 @@ public class Result {
         int[] sorter = Arrays.copyOf(original, n);
 
         Arrays.sort(sorter);
-
         if(!ascending){
             for (int i = 0; i < n /2; i++) {
                 int temp = sorter[i];
