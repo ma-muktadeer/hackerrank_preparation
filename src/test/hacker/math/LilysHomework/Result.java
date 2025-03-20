@@ -10,17 +10,17 @@ public class Result {
         return Math.min(minSwap(arr, true), minSwap(arr, false));
     }
 
-    private static long minSwap(List<Integer> arr, boolean ascending){
+    private static long minSwap(List<Integer> arr, boolean ascending) {
         int n = arr.size();
         int[] original = arr.stream().mapToInt(Integer::intValue).toArray();
         int[] sorter = Arrays.copyOf(original, n);
 
         Arrays.sort(sorter);
-        if(!ascending){
-            for (int i = 0; i < n /2; i++) {
+        if (!ascending) {
+            for (int i = 0; i < n / 2; i++) {
                 int temp = sorter[i];
-                sorter[i] = sorter[n - i -1];
-                sorter[n-i-1] = temp;
+                sorter[i] = sorter[n - i - 1];
+                sorter[n - i - 1] = temp;
             }
         }
 
@@ -33,12 +33,12 @@ public class Result {
         long swaps = 0;
 
         for (int i = 0; i < n; i++) {
-            if(visied[i]  && indexMap.get(sorter[i]) == i){
+            if (visied[i] && indexMap.get(sorter[i]) == i) {
                 continue;
             }
 
             int cycleSize = 0;
-            int j =i;
+            int j = i;
 
             while (!visied[j]) {
                 visied[j] = true;
@@ -46,8 +46,8 @@ public class Result {
                 cycleSize++;
             }
 
-            if(cycleSize>1){
-                swaps+=cycleSize - 1;
+            if (cycleSize > 1) {
+                swaps += cycleSize - 1;
             }
         }
         return swaps;
